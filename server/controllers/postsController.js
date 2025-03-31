@@ -40,7 +40,8 @@ export const updatePost = async (req, res) => {
       { author, title, content, cover, date },
       { where: { id } }
     );
-    res.send({ message: "Post updated" });
+    const updatedUser = await User.findByPk(id)
+    res.json({ message: "Post updated", updatedUser });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
